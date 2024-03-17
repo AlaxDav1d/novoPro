@@ -13,13 +13,13 @@
                $retorno = ['status' =>0,'dados'=>null];
                
                try{
-                    $stmt = $this->db->prepare(`SELECT id from usuario WHERE nome = :nomeUsuario AND senha = :senha`);
+                    $stmt = $this->db->prepare('SELECT nivel from usuario WHERE nome = :nomeUsuario AND senha = :senha');
                     $stmt->bindValue(':nomeUsuario',$this->nomeModel);
                     $stmt->bindValue(':senha',$this->senhaModel);
                     $stmt->execute();
                     $volta = $stmt->fetch();
                     $retorno['status'] = 1;
-                    $retorno['dados'] = $volta;
+                    $retorno['dados'] = $volta['nivel'];
                }catch(PDOException $e){
                     echo "Erro Ao Logar",$e->getMessage();
                }
@@ -37,6 +37,21 @@
                     $retorno['status'] = 1;
                }catch(PDOException $e){
                     echo "Erro ao criar Usuario",$e->getMessage();
+               }
+               return $retorno;
+          }
+          public function listarUsuarios(){
+               $retorno = ['status' =>0,'dados'=>null];
+               try{
+                    $stmt = $this->db->prepare('SELECT nome FROM usuario WHERE id > :id');
+                    $stmt->bindValue(':id',$this->nomeModel);
+                    $stmt->execute();
+                    $volta = $stmt->fetchAll();
+                    $retorno['status'] = 1;
+                    $retorno['dados'] = $volta;
+
+               }catch(PDOException $e){
+                    echo "Erro ao listar Usuario",$e->getMessage();
                }
                return $retorno;
           }

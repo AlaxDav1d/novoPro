@@ -169,7 +169,11 @@
                alert('O Login ou a Senha estão incorretos');
           }
           else{
-               alert("USUARIO ENCONTRADO"),window.location.href=`../View/telaInicial.php?nome=${nome}`; 
+               if(dados == "Usuario"){
+                    alert("USUARIO ENCONTRADO"),window.location.href=`../View/telaInicial.php?nome=${nome}`; 
+               }else{
+                    alert("USUARIO ENCONTRADO"),window.location.href=`../View/telaInicialAdm.php?nome=${nome}`; 
+               }
           }
      });
      $("#user").on('click',async function(e){
