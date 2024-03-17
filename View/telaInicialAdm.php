@@ -16,7 +16,7 @@
           margin: 0;
      }
      .tudo{
-          background-color: rgba(116,224,157,1);
+          background-color: black;
           display: flex;
           height: 50vh;
           gap: 8px;
